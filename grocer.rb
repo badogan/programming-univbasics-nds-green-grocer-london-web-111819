@@ -104,10 +104,7 @@ def checkout(cart, coupons)
     index4 +=1 
   end
   #dog_name = params[:dog][:name] if !params[:dog].blank?
-  total = total *0.9 if total>100
-  #if total > 100
-  #  total = total*0.9
-  #end
+  total = total*0.9 if total>100
   total
 end
 
