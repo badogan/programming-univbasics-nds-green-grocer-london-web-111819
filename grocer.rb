@@ -45,8 +45,6 @@ def apply_coupons(cart, coupons)
   #
   # REMEMBER: This method **should** update cart
   index2 = 0
-  #temp = cart.length
-  
   while index2 < cart.length do
     construct_entries_discounted = {} #changed07Nov19 from cart[index2]
     get_item_coupon_details = find_item_by_name_in_collection(cart[index2][:item],coupons)
@@ -62,7 +60,7 @@ def apply_coupons(cart, coupons)
       construct_entries_discounted[:price] = get_item_coupon_details[:cost] / get_item_coupon_details[:num]
       construct_entries_discounted[:count] =how_many_discounted_groups*get_item_coupon_details[:num]
       construct_entries_discounted[:clearance] = cart[index2][:clearance]
-      cart << construct_entries_discounted
+      cart.push(construct_entries_discounted)
     end
     index2 +=1 
   end
