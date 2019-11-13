@@ -132,7 +132,7 @@ consolidated = consolidate_cart(sample_array)
 coupons_applied = apply_coupons(consolidated,sample_coupon_array)
 #binding.pry
 final = apply_clearance(coupons_applied)
-binding.pry
+#binding.pry
 
 #======main end========
 #======================
