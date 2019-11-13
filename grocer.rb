@@ -80,8 +80,7 @@ def apply_clearance(cart)
     end
     index3 +=1 
   end
-  p cart
-  return cart
+  cart
 end
 
 def checkout(cart, coupons)
