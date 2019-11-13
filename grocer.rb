@@ -100,10 +100,9 @@ def checkout(cart, coupons)
   good_list = apply_clearance(apply_coupons(consolidate_cart(cart),coupons))
   index4 = 0 ; total = 0
   while index4 < good_list.length do
-    total = total + (good_list[index4][:price] * good_list[index4][:count])
+    total += (good_list[index4][:price] * good_list[index4][:count])
     index4 +=1 
   end
-  #dog_name = params[:dog][:name] if !params[:dog].blank?
   total = total*0.9 if total>100
   total
 end
