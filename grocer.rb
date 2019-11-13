@@ -103,10 +103,12 @@ def checkout(cart, coupons)
     total = total + (good_list[index4][:price] * good_list[index4][:count])
     index4 +=1 
   end
-  if total > 100
-    total = total*0.9
-  end
-  total
+  #dog_name = params[:dog][:name] if !params[:dog].blank?
+  total = total *0.9 if total>100
+  #if total > 100
+  #  total = total*0.9
+  #end
+  #total
 end
 
 #========main start=====
