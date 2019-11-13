@@ -44,9 +44,8 @@ def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
-  index2 = 0
+  index2 = 0 ; construct_entries_discounted={}
   while index2 < cart.length do
-    construct_entries_discounted = {} #changed07Nov19 from cart[index2]
     get_item_coupon_details = find_item_by_name_in_collection(cart[index2][:item],coupons)
     if get_item_coupon_details != nil
       how_many_discounted_groups = cart[index2][:count].div(get_item_coupon_details[:num])
@@ -56,13 +55,15 @@ def apply_coupons(cart, coupons)
       cart[index2][:item] = cart[index2][:item]
       cart[index2][:price] = cart[index2][:price]
       cart[index2][:clearance] = cart[index2][:clearance]
-      
+      #Construction of a new entry for "W/COUPON items"
       construct_entries_discounted[:item] = cart[index2][:item] + " W/COUPON"
       construct_entries_discounted[:price] = get_item_coupon_details[:cost] / get_item_coupon_details[:num]
       construct_entries_discounted[:count] =how_many_discounted_groups*get_item_coupon_details[:num]
       construct_entries_discounted[:clearance] = cart[index2][:clearance]
+      #"Adding" the W/COUPON item to the cart like it is a "new" product
       cart.push(construct_entries_discounted)
     end
+    construct_entries_discounted = {} #changed07Nov19 from cart[index2]
     index2 +=1 
   end
   #p cart
