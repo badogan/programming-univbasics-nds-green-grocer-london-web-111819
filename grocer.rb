@@ -66,8 +66,7 @@ def apply_coupons(cart, coupons)
     construct_entries_discounted = {}
     index2 +=1 
   end
-  #p cart
-  return cart
+  cart
 end
 
 def apply_clearance(cart)
