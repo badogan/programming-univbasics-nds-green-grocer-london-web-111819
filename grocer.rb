@@ -45,9 +45,9 @@ def apply_coupons(cart, coupons)
   #
   # REMEMBER: This method **should** update cart
   index2 = 0
-  temp = cart.length
+  #temp = cart.length
   
-  while index2 < temp do
+  while index2 < cart.length do
     construct_entries_discounted = {} #changed07Nov19 from cart[index2]
     get_item_coupon_details = find_item_by_name_in_collection(cart[index2][:item],coupons)
     if get_item_coupon_details != nil
