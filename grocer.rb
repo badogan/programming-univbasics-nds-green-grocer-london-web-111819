@@ -49,17 +49,21 @@ def apply_coupons(cart, coupons)
     get_item_coupon_details = find_item_by_name_in_collection(cart[index2][:item],coupons)
     if get_item_coupon_details != nil
       how_many_discounted_groups = cart[index2][:count].div(get_item_coupon_details[:num])
+      
       #Update the counts taking into discounted (grouped) items. This is an "inplace items update for count only!
       cart[index2][:count] = cart[index2][:count]-(how_many_discounted_groups*get_item_coupon_details[:num])
+      
       #Following updates not necessary! Some tests failed as I did not explicitly re-assign, that's why I added:)
       cart[index2][:item] = cart[index2][:item]
       cart[index2][:price] = cart[index2][:price]
       cart[index2][:clearance] = cart[index2][:clearance]
+      
       #Construction of a new entry for "W/COUPON items"
       construct_entries_discounted[:item] = cart[index2][:item] + " W/COUPON"
       construct_entries_discounted[:price] = get_item_coupon_details[:cost] / get_item_coupon_details[:num]
       construct_entries_discounted[:count] =how_many_discounted_groups*get_item_coupon_details[:num]
       construct_entries_discounted[:clearance] = cart[index2][:clearance]
+      
       #"Adding" the W/COUPON item to the cart like it is a "new" product
       cart.push(construct_entries_discounted)
     end
@@ -102,7 +106,7 @@ def checkout(cart, coupons)
   if total > 100
     total = total*0.9
   end
-  return total
+  total
 end
 
 #========main start=====
