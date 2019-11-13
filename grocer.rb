@@ -63,7 +63,7 @@ def apply_coupons(cart, coupons)
       #"Adding" the W/COUPON item to the cart like it is a "new" product
       cart.push(construct_entries_discounted)
     end
-    construct_entries_discounted = {} #
+    construct_entries_discounted = {}
     index2 +=1 
   end
   #p cart
