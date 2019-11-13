@@ -14,7 +14,7 @@ def find_item_by_name_in_collection(name, collection)
     if (collection[index][:item] == name) 
       output=collection[index]
     end
-    index= index + 1 
+    index +=1 
   end
   return output
 end
@@ -31,11 +31,11 @@ def consolidate_cart(cart)
       get_the_currently_existing = cart[index]
       get_the_currently_existing[:count]=1 
     else
-      get_the_currently_existing[:count] = get_the_currently_existing[:count] + 1
+      get_the_currently_existing[:count] += 1
       new_cart.delete_if { |h| h[:item] == cart[index][:item]}
     end
-    new_cart << get_the_currently_existing
-    index = index +1 
+    new_cart.push(get_the_currently_existing)
+    index +=1 
   end
   new_cart
 end
@@ -64,7 +64,7 @@ def apply_coupons(cart, coupons)
       construct_entries_discounted[:clearance] = cart[index2][:clearance]
       cart << construct_entries_discounted
     end
-    index2 = index2 + 1 
+    index2 +=1 
   end
   #p cart
   return cart
@@ -79,7 +79,7 @@ def apply_clearance(cart)
     if cart[index3][:clearance]
       cart[index3][:price] = (cart[index3][:price]*0.8).to_f.round(2)
     end
-    index3 = index3 + 1 
+    index3 +=1 
   end
   p cart
   return cart
@@ -99,7 +99,7 @@ def checkout(cart, coupons)
   index4 = 0 ; total = 0
   while index4 < good_list.length do
     total = total + (good_list[index4][:price] * good_list[index4][:count])
-    index4 = index4 + 1 
+    index4 +=1 
   end
   if total > 100
     total = total*0.9
@@ -107,6 +107,9 @@ def checkout(cart, coupons)
   return total
 end
 
+#========main start=====
+#=======================
+require 'pry'
 sample_array = [
   {:item => "AVOCADO", :price => 10.00, :clearance => true},
   {:item => "AVOCADO", :price => 10.00, :clearance => true},
@@ -125,4 +128,11 @@ sample_coupon_array = [
  
 #p find_item_by_name_in_collection("PEAR",sample_array)
 consolidated = consolidate_cart(sample_array)
-apply_clearance(apply_coupons(consolidated,sample_coupon_array))
+#binding.pry
+coupons_applied = apply_coupons(consolidated,sample_coupon_array)
+#binding.pry
+final = apply_clearance(coupons_applied)
+binding.pry
+
+#======main end========
+#======================
