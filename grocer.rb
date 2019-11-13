@@ -32,7 +32,7 @@ def consolidate_cart(cart)
       get_the_currently_existing[:count]=1 
     else
       get_the_currently_existing[:count] += 1
-      #new_cart.delete_if { |h| h[:item] == cart[index][:item]}
+      new_cart.delete_if { |h| h[:item] == cart[index][:item]}
     end
     new_cart.push(get_the_currently_existing)
     index +=1 
